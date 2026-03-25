@@ -26,5 +26,8 @@ patches:
       labelSelector: "app.kubernetes.io/component=admission-webhook"
     patch: |-
       - op: add
-        path: /metadata/annotations/argocd.argoproj.io~1compare-options
-        value: IgnoreExtraneous        
+        path: /metadata/annotations/argocd.argoproj.io~1hook
+        value: PostSync
+      - op: add
+        path: /metadata/annotations/argocd.argoproj.io~1hook-delete-policy
+        value: BeforeHookCreation   
