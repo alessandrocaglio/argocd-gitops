@@ -1,0 +1,10 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: servicemeshoperator
+  namespace: openshift-operators
+spec:
+  channel: stable # Adjust based on RH versioning (e.g., v3.0)
+  name: servicemeshoperator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
