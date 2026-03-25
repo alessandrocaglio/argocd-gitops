@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../base
+  # 1. NGINX Ingress Controller (Kind-specific version)
+  - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+  # 2. OLM (Operator Lifecycle Manager)
+  - https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.28.0/crds.yaml
+  - https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.28.0/olm.yaml
+  # 3. ArgoCD Ingress (To get rid of port-forwarding)
+  - argocd-ingress.yaml
+
+patches:
+  # Patch NGINX to work with Rootless Podman / Kind port mapping
+  - target:
+      kind: Deployment
+      name: ingress-nginx-controller
+      namespace: ingress-nginx
+    patch: |-
+      - op: add
+        path: /spec/template/spec/containers/0/args/-
+        value: "--publish-status-address=localhost"
