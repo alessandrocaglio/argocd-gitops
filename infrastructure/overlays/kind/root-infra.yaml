@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/alessandrocaglio/argocd-gitops.git'
-    path: infrastructure/overlays/kind
+    path: infrastructure/apps
     targetRevision: HEAD
   destination:
     server: 'https://kubernetes.default.svc'

@@ -12,13 +12,13 @@ patches:
         path: /spec/type
         value: NodePort
   # Patch to fix the Job loop
-  - target:
-      kind: Job
-      labelSelector: "app.kubernetes.io/component=admission-webhook"
-    patch: |-
-      - op: add
-        path: /metadata/annotations/argocd.argoproj.io~1hook
-        value: PostSync
-      - op: add
-        path: /metadata/annotations/argocd.argoproj.io~1hook-delete-policy
-        value: BeforeHookCreation
+  # - target:
+  #     kind: Job
+  #     labelSelector: "app.kubernetes.io/component=admission-webhook"
+  #   patch: |-
+  #     - op: add
+  #       path: /metadata/annotations/argocd.argoproj.io~1hook
+  #       value: PostSync
+  #     - op: add
+  #       path: /metadata/annotations/argocd.argoproj.io~1hook-delete-policy
+  #       value: BeforeHookCreation
