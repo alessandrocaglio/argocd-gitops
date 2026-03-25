@@ -22,6 +22,14 @@ patches:
         path: /spec/template/spec/containers/0/args/-
         value: "--publish-status-address=localhost"
   - target:
+      kind: Service
+      name: ingress-nginx-controller
+      namespace: ingress-nginx
+    patch: |-
+      - op: replace
+        path: /spec/type
+        value: NodePort
+  - target:
       kind: Job
       labelSelector: "app.kubernetes.io/component=admission-webhook"
     patch: |-
@@ -30,4 +38,4 @@ patches:
         value: PostSync
       - op: add
         path: /metadata/annotations/argocd.argoproj.io~1hook-delete-policy
-        value: BeforeHookCreation   
+        value: BeforeHookCreation
