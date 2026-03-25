@@ -10,6 +10,7 @@ resources:
   - https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.28.0/olm.yaml
   # 3. ArgoCD Ingress (To get rid of port-forwarding)
   - argocd-ingress.yaml
+  - sail-operator.yaml
 
 patches:
   # Patch NGINX to work with Rootless Podman / Kind port mapping
